@@ -1,0 +1,280 @@
+@media only screen and (max-width: 585px) {
+
+    .mainHeader h1 {
+        color: #868686;
+        position: absolute;
+        transform: translate(-50%, -60%);
+        top: 50%;
+        left: 50%;
+        font-size: 17px;
+        font-weight: lighter;
+        width: 100%;
+        text-align: center;
+    }
+
+    .paintHeader {
+        position: absolute;
+        transform: translate(-50%,0);
+        top: 58%;
+        left: 50%;
+        width: 172px;
+
+    }
+
+}
+
+@media only screen and (max-width: 565px) {
+
+    #pageWrapper {
+        height: 960px;
+    }
+
+    .checkoutForm {
+        position: absolute;
+        transform: translate(-50%, 0);
+        left: 50%;
+        margin-top: 350px;
+        width: 80%;
+        max-width: 80%;
+        padding-bottom: 100px;
+    }
+
+    #orderSummary {
+        position: absolute;
+        left: 50%;
+        margin-top: 36px;
+        width: 80%;
+        max-width: 80%;
+        transform: translate(-50%, 0);
+    }
+
+    #submitButton {
+        position: relative;
+        transform: translate(-50%, 0);
+        left: 50%;
+        background-color: #63b0bb;
+        width: 70%;
+        height: 60px;
+        color: whitesmoke;
+        border-radius: 10px;
+        font-size: 20px;
+        border: none;
+        top: 730px;
+    }
+
+}
+
+@media only screen and (min-width: 565px) {
+
+    #pageWrapper {
+        height: auto;
+    }
+
+    .checkoutForm {
+        position: absolute;
+        transform: translate(0, 0);
+        right: 53%;
+        margin-top: 28px;
+        max-width: 43%;
+        padding-bottom: 100px;
+    }
+
+    #orderSummary {
+        position: absolute;
+        left: 55%;
+        margin-top: 36px;
+        width: 40%;
+        max-width: 43%;
+        transform: translate(0, 0);
+    }
+
+    #submitButton {
+        position: relative;
+        transform: translate(-60%, 0);
+        left: 0%;
+        background-color: #63b0bb;
+        width: 70%;
+        height: 60px;
+        color: whitesmoke;
+        border-radius: 10px;
+        font-size: 20px;
+        border: none;
+        top: 515px;
+    }
+
+}
+
+.menuTabs p {
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    top: 23px;
+    font-size: 30px;
+    color: whitesmoke;
+}
+
+.personInfo {
+    height: 25px;
+    margin-bottom: 10px;
+    width: 98%;
+    padding-left: 2%;
+    border: 1px solid black;
+}
+
+#ccn {
+    height: 30px;
+    margin-bottom: 10px;
+    width: 98%;
+    border: 1px solid black;
+    padding-left: 2%;
+}
+
+#ccn3 {
+    height: 25px;
+    margin-bottom: 10px;
+    width: 23%;
+    border: 1px solid black;
+    padding-left: 2%;
+}
+
+.sslImg {
+    height: 30px;
+    position: absolute;
+    left: 90px;
+    bottom: 208px;
+    display: none;
+}
+
+#exDate1 {
+    height: 25px;
+    margin-bottom: 10px;
+    width: 23%;
+    border: 1px solid black;
+    padding-left: 2%;
+}
+
+#exDate2 {
+    height: 25px;
+    margin-bottom: 10px;
+    width: 23%;
+    margin-left: 20px;
+    border: 1px solid black;
+    padding-left: 2%;
+}
+
+.checkTitle {
+    width: 100%;
+    transform: translate(-50%,0);
+    text-align: center;
+    left: 50%;
+    position: absolute;
+    height: 33px;
+    padding-top: 7px;
+    background-color: #971b2f;
+    color: whitesmoke;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.checkItem {
+    width: 100%;
+    position: absolute;
+    margin-top: 43px;
+}
+
+.itemName {
+    position: absolute;
+    left: 0;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-bottom: 4px;
+    top: 60px;
+}
+
+.itemQty {
+    position: absolute;
+    right: 0;
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    top: 35px;
+}
+
+#utensils {
+    position: absolute;
+    top: 76px;
+    margin-left: 4px;
+    left: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: none;
+    width: 98%;
+}
+
+#itemMethod {
+    position: absolute;
+    right: 0px;
+    margin-top: 108px;
+    text-align: right;
+    border: 1px solid #971b2f;
+    border-right: none;
+    border-left: none;
+    width: calc(100% - 6px);
+    padding-right: 4px;
+    padding-top: 4px;
+    padding-bottom: 6px;
+}
+
+#myAddress {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 21.6px;
+    white-space: nowrap;
+    display: block;
+}
+
+#checkTotal {
+    position: absolute;
+    width: calc(100% - 3px);
+    margin-top: 152px;
+    border-top: none;
+    height: 30px;
+    padding-top: 4px;
+    left: -.5px;
+}
+
+.totalPlaceholder {
+    position: absolute;
+    left: 0;
+    padding-left: 6px;
+}
+
+#totalNum {
+    position: absolute;
+    right: 0;
+    padding-right: 6px;
+}
+
+#ordNotes {
+    position: absolute;
+    top: 30px;
+    left: 8px;
+    display: -webkit-box;
+    height: 90px;
+    overflow: hidden;
+    width: 100%;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+#hiddenSubmitButton {
+    display: none;
+}
+
+#submitButton:hover {
+    background-color: whitesmoke;
+    border: 2px solid #63b0bb;
+    color: #63b0bb;
+    cursor: pointer;
+}
