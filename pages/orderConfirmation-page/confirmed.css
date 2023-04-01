@@ -1,0 +1,73 @@
+@media only screen and (max-width: 585px) {
+
+    .mainHeader h1 {
+        color: #868686;
+        position: absolute;
+        transform: translate(-50%, -60%);
+        top: 50%;
+        left: 50%;
+        font-size: 17px;
+        font-weight: lighter;
+        width: 100%;
+        text-align: center;
+    }
+
+    .paintHeader {
+        position: absolute;
+        transform: translate(-50%,0);
+        top: 58%;
+        left: 50%;
+        width: 172px;
+
+    }
+
+    #now {
+        position: absolute;
+        transform: translate(-50%, 0%);
+        left: 50%;
+        top: 230px;
+        width: 90%;
+        text-align: center;
+        font-size: 20px;
+        line-height: 45px;
+    }
+
+}
+
+@media only screen and (min-width: 585px) {
+
+    #now {
+        position: absolute;
+        transform: translate(-50%, 0%);
+        left: 50%;
+        top: 180px;
+        width: 60%;
+        text-align: center;
+        font-size: 20px;
+        line-height: 45px;
+    }
+    
+}
+
+.menuTabs p {
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    top: 23px;
+    font-size: 30px;
+    color: whitesmoke;
+    width: 100%;
+    text-align: center;
+}
+
+#thanks {
+    position: absolute;
+    transform: translate(-50%, 0%);
+    left: 50%;
+    top: 105px;
+    font-size: 250%;
+    width: 90%;
+    text-align: center;
+    font-weight: bold;
+    color: #868686;
+}

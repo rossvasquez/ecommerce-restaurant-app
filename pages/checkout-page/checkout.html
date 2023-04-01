@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z'Mariks</title>
+    <link rel="stylesheet" type="text/css" href="../menu-page/zmenu.css" />
+    <link rel="stylesheet" type="text/css" href="checkout.css" />
+</head>
+<body>
+    <div id="loadingScreen">
+        <img src="../../assets/static/cavatappi.png" id="loadingNoodle">
+    </div>
+    
+    <div class="mainHeader">
+        <div id="logoShadow"></div>
+        <img src="../../assets/static/zmarik-logo.png" id="zLogo">
+        <img src="../../assets/static/paint.png" class="paintHeader">
+        <h1>Catering Order System</h1>
+    </div>
+
+    <div id="pageWrapper">
+
+        <div class="menuTabs">
+            <p>Checkout</p>
+        </div>
+
+        <form class="checkoutForm">
+            <label for="fname">First Name</label><br>
+            <input type="text" id="fname" name="fname" class="personInfo" required><br>
+            <label for="lname">Last Name</label><br>
+            <input type="text" id="lname" name="lname" class="personInfo" required><br>
+            <label for="email">E-Mail</label><br>
+            <input type="email" id="email" name="email" class="personInfo" required><br>
+            <label for="phone">Phone Number</label><br>
+            <input type="tel" id="phone" name="phone" class="personInfo" required><br><br>
+            <label for="ccn">Credit Card</label><br>
+            <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" maxlength="19" placeholder="xxxx xxxx xxxx xxxx"><br>
+            <label for="ccn3">CVV</label><br>
+            <input id="ccn3" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" maxlength="4"><br>
+            <label for="exDate1">Expiration Date</label><br>
+            <input id="exDate1" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="MM">
+            <input id="exDate2" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="YY">
+            <img src="../../assets/static/ssl.png" class="sslImg" alt="Sensitive Information Protected by Secure Socket Layer"><br>
+            <input type="submit" value="HB" id="hiddenSubmitButton">
+        </form>
+
+        <div id="orderSummary">
+            <p class="checkTitle">Order Summary</p>
+            <div id="checkItem">
+            </div>
+            <p id="utensils">|</p>
+            <div id="itemMethod">
+                <p id="myMethod"></p>
+                <p id="myAddress"></p>
+                <p id="myDate"></p>
+                <p id="myTime"></p>
+            </div>
+            <div id="checkTotal">
+                <p class="totalPlaceholder">Total: </p>
+                <p id="totalNum"></p>
+                <p id="ordNotes">Order Notes:<br></p>
+            </div>
+
+            <button type="button" id="submitButton">Submit Order</button>
+        </div>
+    </div>
+
+    <script src = "checkout.js"></script>
+</body>
+</html>
