@@ -67,7 +67,7 @@
 @media only screen and (min-width: 565px) {
 
     #pageWrapper {
-        height: auto;
+        height: 110vh;
     }
 
     .checkoutForm {
@@ -276,5 +276,17 @@
     background-color: whitesmoke;
     border: 2px solid #63b0bb;
     color: #63b0bb;
+    cursor: pointer;
+}
+
+#paypalCheckout {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+#paypalCheckout:hover {
     cursor: pointer;
 }
