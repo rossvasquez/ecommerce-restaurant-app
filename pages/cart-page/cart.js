@@ -205,7 +205,7 @@ myContinue.addEventListener('click', function () {
         if (openTime < testTime && testTime < closeTime) {
             localStorage.setItem("orderDate", myDate);
             localStorage.setItem("Order Time", myTime);
-            localStorage.setItem("Order Total", myTotal);
+            localStorage.setItem("Order Total", myTotal.toFixed(2));
             localStorage.setItem('Order Notes', myNotes);
             storeHours[0].style.display = "none";
             timeValue.style.borderColor = "black";
@@ -417,7 +417,7 @@ for (let i = 0; i <= localStorage.length; i++) {
             }
             cartProduct1.appendChild(removeItem);
             let removeItemImg = document.createElement("img");
-            removeItemImg.src = '../../assets/static/removeIcon.png';
+            removeItemImg.src = '../assets/static/removeIcon.png';
             removeItemImg.className = 'removeItemImg';
             removeItem.appendChild(removeItemImg);
             if (item.includes('*')) {

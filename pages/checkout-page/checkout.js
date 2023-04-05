@@ -1,3 +1,23 @@
+//Initialize Firebase Realtime Database
+
+// import { initializeApp } from "firebase/app";
+// import { getDatabase, ref, set } from "firebase/database";
+
+// const firebaseConfig = {
+//     apiKey: "AIzaSyChYcq4zhc5P_AuL_Qx0yNtLH2RtE00IKw",
+//     authDomain: "catering-order-system-2ae86.firebaseapp.com",
+//     databaseURL: "https://catering-order-system-2ae86-default-rtdb.firebaseio.com",
+//     projectId: "catering-order-system-2ae86",
+//     storageBucket: "catering-order-system-2ae86.appspot.com",
+//     messagingSenderId: "837227972667",
+//     appId: "1:837227972667:web:6fb3c179d3c74765f5b41e",
+//     measurementId: "G-7XY9NTQD8B"
+// }
+
+// const app = initializeApp(firebaseConfig);
+
+// const database = getDatabase();
+
 // Loading Screen Animation
 
 const loadingScreen = document.getElementById('loadingScreen');
@@ -250,6 +270,14 @@ subBtn.addEventListener('click', function( e ) {
     if( ! confirm('Select "Ok" to confirm you are ready to place your order.') ) {
         e.preventDefault();
     } else {
+
+        //Organize Order Data from localStorage
+
+
+
+        //Push order data to Firebase
+
+
         window.location.href = "../orderConfirmation-page/confirmed.html";
         localStorage.clear();
     }
