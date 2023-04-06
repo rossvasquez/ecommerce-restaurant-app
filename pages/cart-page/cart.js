@@ -173,31 +173,6 @@ myContinue.addEventListener('click', function () {
     let openTime = Date.parse(myDate + "T10:30");
     let closeTime = Date.parse(myDate + "T19:30");
     let testTime = Date.parse(myDate + "T" + myTime);
-    let lsArray = [];
-
-    for(i=0;i<localStorage.length;i++){
-        lsArray.push(localStorage.getItem(localStorage.key(i)));
-    }
-
-    if (lsArray.includes('Plates') === false) {
-        localStorage.setItem('Plates', 'No');
-    }
-    
-    if (lsArray.includes('Silverware') === false) {
-        localStorage.setItem('Silverware', 'No');
-    }
-    
-    if (lsArray.includes('Napkins') === false) {
-        localStorage.setItem('Napkins', 'No');
-    }
-    
-    if (lsArray.includes('Serving Utensils') === false) {
-        localStorage.setItem('Serving Utensils', 'No');
-    }
-    
-    if (lsArray.includes('Order Address') === false) {
-        localStorage.setItem('Order Address', '');
-    }
     
     if (myDate >= today) {
         storeHours[1].style.display = "none";

@@ -1,55 +1,55 @@
 //Initialize Firebase Realtime Database
 
-// import { initializeApp } from "firebase/app";
-// import { getDatabase, ref, set } from "firebase/database";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js';
+import { getDatabase, ref, push, set } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyChYcq4zhc5P_AuL_Qx0yNtLH2RtE00IKw",
-//     authDomain: "catering-order-system-2ae86.firebaseapp.com",
-//     databaseURL: "https://catering-order-system-2ae86-default-rtdb.firebaseio.com",
-//     projectId: "catering-order-system-2ae86",
-//     storageBucket: "catering-order-system-2ae86.appspot.com",
-//     messagingSenderId: "837227972667",
-//     appId: "1:837227972667:web:6fb3c179d3c74765f5b41e",
-//     measurementId: "G-7XY9NTQD8B"
-// }
+const firebaseConfig = {
+    apiKey: "AIzaSyChYcq4zhc5P_AuL_Qx0yNtLH2RtE00IKw",
+    authDomain: "catering-order-system-2ae86.firebaseapp.com",
+    databaseURL: "https://catering-order-system-2ae86-default-rtdb.firebaseio.com",
+    projectId: "catering-order-system-2ae86",
+    storageBucket: "catering-order-system-2ae86.appspot.com",
+    messagingSenderId: "837227972667",
+    appId: "1:837227972667:web:6fb3c179d3c74765f5b41e",
+    measurementId: "G-7XY9NTQD8B"
+}
 
-// const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-// const database = getDatabase();
+const database = getDatabase(app);
 
 // Loading Screen Animation
 
-const loadingScreen = document.getElementById('loadingScreen');
-const loadingNoodle = document.getElementById('loadingNoodle');
+// const loadingScreen = document.getElementById('loadingScreen');
+// const loadingNoodle = document.getElementById('loadingNoodle');
 
-const noodleSpin = [
-    { transform: 'rotate(0deg)'},
-    { transform: 'rotate(215deg)'},
-    { transform: 'rotate(180deg)'},
-    { transform: 'rotate(145deg)'},
-    { transform: 'rotate(180deg)'},
+// const noodleSpin = [
+//     { transform: 'rotate(0deg)'},
+//     { transform: 'rotate(215deg)'},
+//     { transform: 'rotate(180deg)'},
+//     { transform: 'rotate(145deg)'},
+//     { transform: 'rotate(180deg)'},
 
-];
+// ];
 
-const noodleTiming = {
-    duration: 1500,
-    iterations: Infinity,
-}
+// const noodleTiming = {
+//     duration: 1500,
+//     iterations: Infinity,
+// }
 
-loadingNoodle.animate(noodleSpin, noodleTiming);
+// loadingNoodle.animate(noodleSpin, noodleTiming);
 
-// Page Load Event Listener for Loading Screen
+// // Page Load Event Listener for Loading Screen
 
-document.onreadystatechange = function() {
-    document.onreadystatechange = function() {
-        setTimeout(function() {
-            if (document.readyState == "complete") {
-                loadingScreen.style.display = 'none';
-            }
-        }, 500)
-    }
-}
+// document.onreadystatechange = function() {
+//     document.onreadystatechange = function() {
+//         setTimeout(function() {
+//             if (document.readyState == "complete") {
+//                 loadingScreen.style.display = 'none';
+//             }
+//         }, 500)
+//     }
+// }
 
 const myDate = document.getElementById('myDate');
 const myMethod = document.getElementById('myMethod');
@@ -92,7 +92,7 @@ let subTop = 515;
 let pwH = 725;
 let utensilCount = 0;
 
-for (i = 0; i < localStorage.length; i++) {
+for (let i=0; i < localStorage.length; i++) {
     let item = localStorage.key(i);
     if (item == 'Plates') {
         if (localStorage.getItem(item) == 'Yes') {
@@ -266,27 +266,143 @@ setTimeout(function() {
     }
 } , 4)
 
-subBtn.addEventListener('click', function( e ) {
-    if( ! confirm('Select "Ok" to confirm you are ready to place your order.') ) {
-        e.preventDefault();
-    } else {
+subBtn.addEventListener('click', function() {
+    
+        //Handle form on page
+
+        document.getElementById("hiddenSubmitButton").click();
+
+        const firstName = document.getElementById('fname').value;
+        const lastName = document.getElementById('lname').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
 
         //Organize Order Data from localStorage
 
+        localStorage.removeItem("Cart Count");
 
+        const orderDate = localStorage.getItem("orderDate");
+        localStorage.removeItem("orderDate");
+
+        const orderTime = localStorage.getItem("Order Time");
+        localStorage.removeItem("Order Time");
+
+        const orderMethod = localStorage.getItem("Order Method");
+        localStorage.removeItem("Order Method");
+
+
+        const orderAddress = null;
+
+        if (localStorage.getItem("Order Address") == null || localStorage.getItem("Order Address") == ''){
+
+        } else {
+            orderAddress = localStorage.getItem("Order Address");
+            localStorage.removeItem("Order Address");
+        }
+
+        const hasPlates = true;
+
+        if (localStorage.getItem("Plates") === 'Yes') {
+            
+            localStorage.removeItem('Plates');
+        } else {
+            hasPlates = false;
+        }
+
+        const hasSilverware = true;
+
+        if (localStorage.getItem("Silverware") === 'Yes') {
+
+            localStorage.removeItem('Silverware');
+        } else {
+            hasSilverware = false;
+        }
+
+        const hasNapkins = true;
+
+        if (localStorage.getItem("Napkins") === 'Yes') {
+            
+            localStorage.removeItem('Napkins');
+        } else {
+            hasNapkins = false;
+        }
+
+        const hasServingUtensils = true;
+
+        if (localStorage.getItem("Serving Utensils") === 'Yes') {
+            
+            localStorage.removeItem('Serving Utensils');
+        } else {
+            hasServingUtensils = false;
+        }
+
+        const orderNotes = null;
+
+        if (localStorage.getItem("Order Notes") == null || localStorage.getItem("Order Notes") == ''){
+            
+        } else {
+            orderNotes = localStorage.getItem("Order Notes");
+            localStorage.removeItem("Order Notes");
+        }
+
+        const preOrderTotal = Number(localStorage.getItem('Order Total'));
+
+        const orderTotal = preOrderTotal.toFixed(2);
+
+        const order = {
+            customer: {
+                first_name: firstName,
+                last_name: lastName,
+                email: email,
+                phone: phone
+            },
+            order_date: orderDate,
+            order_time: orderTime,
+            order_method: orderMethod,
+            order_address: orderAddress,
+            has_plates: hasPlates,
+            has_silverware: hasSilverware,
+            has_napkins: hasNapkins,
+            has_serving_utensils: hasServingUtensils,
+            order_notes: orderNotes,
+            order_total: orderTotal,
+            order_items: {}
+        }
+
+        for (i=0;i < localStorage.length; i++) {
+            let item = localStorage.key(i)
+            const itemPrice = item.slice(0,5);
+            const itemName = item.slice(5,(item.indexOf('*')));
+            const itemMods = item.slice(((item.indexOf('*'))+1),(item.indexOf('%')));
+            const itemNotes = item.slice((item.indexOf('%')+1));
+            order.order_items[i] = {
+                item_name: itemName,
+                item_mods: itemMods,
+                item_notes: itemNotes,
+                item_price: itemPrice
+            }
+        }
+
+        console.log(order);
+
+        localStorage.clear();
 
         //Push order data to Firebase
 
+        const ordersRef = ref(database, 'orders');
+
+        const newOrderRef = push(ordersRef);
+
+        set(newOrderRef, order);
 
         window.location.href = "../orderConfirmation-page/confirmed.html";
-        localStorage.clear();
-    }
-})
+
+    })
 
 function preventBack() {
     window.history.forward(); 
 }
   
-setTimeout("preventBack()", 0);
+setTimeout(preventBack(), 0);
   
 window.onunload = function () { null };
