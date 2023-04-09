@@ -12,11 +12,13 @@ const firebaseConfig = {
     messagingSenderId: "837227972667",
     appId: "1:837227972667:web:6fb3c179d3c74765f5b41e",
     measurementId: "G-7XY9NTQD8B"
-}
+  };
 
 const app = initializeApp(firebaseConfig);
 
 const database = getDatabase(app);
+
+const ordersRef = ref(database, 'orders');
 
 // Loading Screen Animation
 
@@ -102,7 +104,6 @@ for (let i=0; i < localStorage.length; i++) {
             itemMethy += 30;
             itemTot += 30;
             utensilCount++;
-            console.log('yeet');
             }
         }
     } else if (item == 'Silverware') {
@@ -113,7 +114,6 @@ for (let i=0; i < localStorage.length; i++) {
                 itemMethy += 30;
                 itemTot += 30;
                 utensilCount++;
-                console.log('yeet');
                 }
         }
     } else if (item == 'Napkins') {
@@ -136,7 +136,6 @@ for (let i=0; i < localStorage.length; i++) {
                 utensilCount++;
                 }
         }
-    console.log(utensilCount);
     } else if (item == "orderDate") {
         let myDay = localStorage.getItem("orderDate").slice(8,10);
         let myMonth = localStorage.getItem("orderDate").slice(5,7);
@@ -243,7 +242,7 @@ setTimeout(function() {
             formHeight = 310;
             buttonTop = 750;
         }
-        for(x = 0; x < itemName.length; x++) {
+        for(let x = 0; x < itemName.length; x++) {
             formHeight += 30;
             pageHeight += 30;
             buttonTop += 30;
@@ -251,7 +250,6 @@ setTimeout(function() {
         checkoutForm[0].style.marginTop = formHeight + 'px';
         subBtn.style.top = buttonTop + 'px';
         pageWrapper.style.height = pageHeight + 'px';
-        console.log(formHeight);
     } else {
         let buttonTop = 565;
         let pageHeight = 820;
@@ -279,130 +277,138 @@ subBtn.addEventListener('click', function() {
 
         //Organize Order Data from localStorage
 
-        localStorage.removeItem("Cart Count");
+        if (firstName.length > 0 && lastName.length > 0 && email.length > 0 && phone.length > 0) {
 
-        const orderDate = localStorage.getItem("orderDate");
-        localStorage.removeItem("orderDate");
+            localStorage.removeItem("Cart Count");
 
-        const orderTime = localStorage.getItem("Order Time");
-        localStorage.removeItem("Order Time");
+            const orderDate = localStorage.getItem("orderDate");
+            localStorage.removeItem("orderDate");
 
-        const orderMethod = localStorage.getItem("Order Method");
-        localStorage.removeItem("Order Method");
+            const orderTime = localStorage.getItem("Order Time");
+            localStorage.removeItem("Order Time");
 
+            const orderMethod = localStorage.getItem("Order Method");
+            localStorage.removeItem("Order Method");
 
-        const orderAddress = null;
+            let orderAddress = null;
 
-        if (localStorage.getItem("Order Address") == null || localStorage.getItem("Order Address") == ''){
+            if (localStorage.getItem("Order Address") == null || localStorage.getItem("Order Address") == ''){
 
-        } else {
-            orderAddress = localStorage.getItem("Order Address");
-            localStorage.removeItem("Order Address");
-        }
+            } else {
+                orderAddress = localStorage.getItem("Order Address");
+                localStorage.removeItem("Order Address");
+            }
 
-        const hasPlates = true;
+            let hasPlates = true;
 
-        if (localStorage.getItem("Plates") === 'Yes') {
-            
+            if (localStorage.getItem("Plates") === null || localStorage.getItem("Plates") === 'No') {
+                hasPlates = false;
+            }
+
             localStorage.removeItem('Plates');
-        } else {
-            hasPlates = false;
-        }
 
-        const hasSilverware = true;
+            let hasSilverware = true;
 
-        if (localStorage.getItem("Silverware") === 'Yes') {
+            if (localStorage.getItem("Silverware") === null || localStorage.getItem("Silverware") === 'No') {
+                hasSilverware = false;
+            }
 
             localStorage.removeItem('Silverware');
-        } else {
-            hasSilverware = false;
-        }
 
-        const hasNapkins = true;
+            let hasNapkins = true;
 
-        if (localStorage.getItem("Napkins") === 'Yes') {
-            
-            localStorage.removeItem('Napkins');
-        } else {
-            hasNapkins = false;
-        }
-
-        const hasServingUtensils = true;
-
-        if (localStorage.getItem("Serving Utensils") === 'Yes') {
-            
-            localStorage.removeItem('Serving Utensils');
-        } else {
-            hasServingUtensils = false;
-        }
-
-        const orderNotes = null;
-
-        if (localStorage.getItem("Order Notes") == null || localStorage.getItem("Order Notes") == ''){
-            
-        } else {
-            orderNotes = localStorage.getItem("Order Notes");
-            localStorage.removeItem("Order Notes");
-        }
-
-        const preOrderTotal = Number(localStorage.getItem('Order Total'));
-
-        const orderTotal = preOrderTotal.toFixed(2);
-
-        const order = {
-            customer: {
-                first_name: firstName,
-                last_name: lastName,
-                email: email,
-                phone: phone
-            },
-            order_date: orderDate,
-            order_time: orderTime,
-            order_method: orderMethod,
-            order_address: orderAddress,
-            has_plates: hasPlates,
-            has_silverware: hasSilverware,
-            has_napkins: hasNapkins,
-            has_serving_utensils: hasServingUtensils,
-            order_notes: orderNotes,
-            order_total: orderTotal,
-            order_items: {}
-        }
-
-        for (i=0;i < localStorage.length; i++) {
-            let item = localStorage.key(i)
-            const itemPrice = item.slice(0,5);
-            const itemName = item.slice(5,(item.indexOf('*')));
-            const itemMods = item.slice(((item.indexOf('*'))+1),(item.indexOf('%')));
-            const itemNotes = item.slice((item.indexOf('%')+1));
-            order.order_items[i] = {
-                item_name: itemName,
-                item_mods: itemMods,
-                item_notes: itemNotes,
-                item_price: itemPrice
+            if (localStorage.getItem("Napkins") === 'No' || localStorage.getItem("Napkins") === null) {
+                hasNapkins = false;
             }
+
+            localStorage.removeItem('Napkins');
+
+            let hasServingUtensils = true;
+
+            if (localStorage.getItem("Serving Utensils") === 'No' || localStorage.getItem('Serving Utensils') === null) {
+                hasServingUtensils = false;
+            }
+
+            localStorage.removeItem('Serving Utensils');
+
+            let orderNotes = null;
+
+            if (localStorage.getItem("Order Notes") == null || localStorage.getItem("Order Notes") == ''){
+                localStorage.removeItem('Order Notes');
+            } else {
+                orderNotes = localStorage.getItem("Order Notes");
+                localStorage.removeItem("Order Notes");
+            }
+
+            const preOrderTotal = Number(localStorage.getItem('Order Total'));
+
+            const orderTotal = preOrderTotal.toFixed(2);
+
+            localStorage.removeItem('Order Total');
+
+            const order = {
+                customer: {
+                    first_name: firstName,
+                    last_name: lastName,
+                    email: email,
+                    phone: phone
+                },
+                order_date: orderDate,
+                order_time: orderTime,
+                order_method: orderMethod,
+                order_address: orderAddress,
+                has_plates: hasPlates,
+                has_silverware: hasSilverware,
+                has_napkins: hasNapkins,
+                has_serving_utensils: hasServingUtensils,
+                order_notes: orderNotes,
+                order_total: orderTotal,
+                order_items: {}
+            }
+
+            for (let i=0;i < localStorage.length; i++) {
+                let item = localStorage.key(i);
+                if (item.includes('firebase')){
+
+                } else {
+                    const itemPrice = item.slice(0,5);
+                    const itemName = item.slice(5,(item.indexOf('*')));
+                    const itemMods = item.slice(((item.indexOf('*'))+1),(item.indexOf('%')));
+                    const itemNotes = item.slice((item.indexOf('%')+1));
+                    const itemQuantity = JSON.parse(localStorage.getItem(item)).length;
+                    order.order_items[i] = {
+                        item_quantity: itemQuantity,
+                        item_name: itemName,
+                        item_mods: itemMods,
+                        item_notes: itemNotes,
+                        item_price: itemPrice,
+                    };
+                }
+            }
+
+            console.log(order);
+
+            //Push order data to Firebase
+
+            const newOrderRef = push(ordersRef);
+
+            console.log('Set Up Complete');
+
+            set(newOrderRef, order)
+                .then(() => {
+                    console.log('IT WORKED');
+                    localStorage.clear();
+                    history.replaceState(null,null,"../orderConfirmation-page/confirmed.html")
+                    window.location.href = "../orderConfirmation-page/confirmed.html";
+                })
+                .catch((error) => {
+                    console.error('Error saving order:', error);
+                });
+            
+            console.log("Executed");
+
+        } else {
+            alert("Please fill out the form to continue.");
         }
-
-        console.log(order);
-
-        localStorage.clear();
-
-        //Push order data to Firebase
-
-        const ordersRef = ref(database, 'orders');
-
-        const newOrderRef = push(ordersRef);
-
-        set(newOrderRef, order);
-
-        window.location.href = "../orderConfirmation-page/confirmed.html";
 
     })
-
-function preventBack() {
-    window.history.forward(); 
-}
-  
-setTimeout(preventBack(), 0);
-  
-window.onunload = function () { null };

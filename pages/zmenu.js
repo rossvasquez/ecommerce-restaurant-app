@@ -552,7 +552,6 @@ contCart.addEventListener('click', function() {
         let thisPrice = thisName.slice(0,5);
         console.log(thisPrice);
         let newName = thisName.slice(5) + broteinDrop.value + thisIng;
-        let newPrice1 = 0;
         if (menu == 0) {
             newPrice += Number(thisPrice) + 12;
             newPrice = newPrice.toFixed(2);
