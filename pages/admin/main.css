@@ -1,0 +1,40 @@
+.gridRowTemp {
+    width: 100%;
+    height: 72px;
+    background-color: lightgrey;
+    position: relative;
+}
+
+.gridItemTemp {
+    background-color: whitesmoke;
+    height: 70px;
+    width: calc(25% - (calc(6px/4)));
+    float: left;
+    position: relative;
+}
+
+.itemInfo {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#method {
+    margin-right: 2px;
+  }
+
+#date {
+    margin-right: 2px;
+  }
+
+#time {
+    margin-right: 2px;
+  }
+
+#total {
+    color: black;
+  }

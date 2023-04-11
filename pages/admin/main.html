@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering Admin View</title>
+    <link rel="stylesheet" type="text/css" href="../zmenu.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+<body>
+
+    <div class="mainHeader">
+        <div id="logoShadow"></div>
+        <img src="../assets/static/zmarik-logo.png" id="zLogo">
+        <img src="../assets/static/paint.png" class="paintHeader">
+        <h1 id="pageTitle">Catering Order System</h1>
+    </div>
+
+    <div id="pageWrapper">
+
+        <div class="menuTabs">
+            <p style="
+                position: absolute;
+                transform: translate(-50%, 0);
+                left: 50%;
+                top: 20px;
+                font-size: 35px;
+                color: whitesmoke;
+            ">Admin View</p>
+        </div>
+
+        <div class="gridRowTemp" id="itemTemp">
+
+            <div class="gridItemTemp" id="method">
+                <p class="itemInfo">Order Method</p>
+            </div>
+
+            <div class="gridItemTemp" id="date">
+                <p class="itemInfo">Order Date</p>
+            </div>
+
+            <div class="gridItemTemp" id="time">
+                <p class="itemInfo">Order Time</p>
+            </div>
+
+            <div class="gridItemTemp" id="total">
+                <p class="itemInfo">Order Total</p>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <script type="module" src="main.js"></script>
+</body>
+</html>

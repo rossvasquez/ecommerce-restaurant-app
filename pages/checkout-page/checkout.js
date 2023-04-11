@@ -2,6 +2,7 @@
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js';
 import { getDatabase, ref, push, set } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
+import { parsePhoneNumberFromString, isValidNumber } from 'https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.9.12/libphonenumber-js.min.js';
 
 const firebaseConfig = {
     apiKey: "AIzaSyChYcq4zhc5P_AuL_Qx0yNtLH2RtE00IKw",
@@ -279,6 +280,10 @@ subBtn.addEventListener('click', function() {
 
         if (firstName.length > 0 && lastName.length > 0 && email.length > 0 && phone.length > 0) {
 
+            const phoneNumber1 = parsePhoneNumberFromString(phone, 'US');
+            
+            if (phoneNumber1 && isValidNumber(phoneNumber1) && phoneNumber1.formatNational() === inputPhone) {
+
             localStorage.removeItem("Cart Count");
 
             const orderDate = localStorage.getItem("orderDate");
@@ -406,6 +411,10 @@ subBtn.addEventListener('click', function() {
                 });
             
             console.log("Executed");
+
+            } else {
+                alert("Please enter a valid US Phone Number in the format XXX-XXX-XXXX");
+            }
 
         } else {
             alert("Please fill out the form to continue.");
